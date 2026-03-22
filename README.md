@@ -51,7 +51,49 @@
 
 推荐直接导入：
 
-- `Alfred-Dev-Tools.alfredworkflow`
+- `Alfred-Dev-Tools-v0.1.0.alfredworkflow`
+
+## Packaging
+
+项目内置了一个标准打包脚本：
+
+`./scripts/package.sh`
+
+用法：
+
+1. 不传版本号：沿用当前 `info.plist` 里的版本号打包
+2. 传版本号：先把 `info.plist` 的 workflow 版本更新成该值，再打包
+
+示例：
+
+```bash
+./scripts/package.sh
+```
+
+如果当前 `info.plist` 里的版本是 `v0.1.0`，会产出：
+
+```bash
+Alfred-Dev-Tools-v0.1.0.alfredworkflow
+```
+
+指定新版本打包：
+
+```bash
+./scripts/package.sh v0.1.1
+```
+
+这条命令会做这些事：
+
+- 更新 `info.plist` 中的 workflow 版本号
+- 重新打包 `.alfredworkflow`
+- 校验 `info.plist`
+- 检查包内是否包含正确的 `version` 和 `webaddress`
+
+当前发布用示例：
+
+```bash
+./scripts/package.sh v0.1.0
+```
 
 ## Keywords
 

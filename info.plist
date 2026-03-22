@@ -662,5 +662,9 @@
 	</array>
 	<key>readme</key>
 	<string>Keywords: pwd, md5, sha, b64, jsonfmt, urlencode, urldecode, uuid, ts, textstat, case, html, jwt, settimer</string>
+	<key>version</key>
+	<string>v0.1.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/Sajor-X/Alfred-Dev-Tools</string>
 </dict>
 </plist>
