@@ -25,11 +25,8 @@ PACKAGE_NAME="${WORKFLOW_NAME}-${VERSION}.alfredworkflow"
 rm -f "${WORKFLOW_NAME}.alfredworkflow" "${PACKAGE_NAME}"
 
 zip -r "${PACKAGE_NAME}" \
-  info.plist README.md LICENSE icon.png \
-  md5.py passwords.py start_timer.py timer_worker.py ts.py \
-  b64.py jsonfmt.py urlencode.py urldecode.py sha.py uuidgen.py \
-  textstat.py caseconv.py htmlcodec.py jwt.py \
-  alfred_password_workflow docs scripts .gitignore \
+  info.plist README.md LICENSE icon.png workflow.py \
+  alfred_dev_tools docs scripts .gitignore \
   -x '*/__pycache__/*' '*.pyc' '.DS_Store'
 
 plutil -lint info.plist

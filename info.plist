@@ -30,6 +30,19 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>catalog-input</key>
+		<array/>
+		<key>cron-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>clipboard-output</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>html-input</key>
 		<array>
 			<dict>
@@ -41,7 +54,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>jsonfmt-input</key>
+		<key>json-input</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -85,17 +98,6 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>sha-input</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>clipboard-output</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
 		<key>settimer-input</key>
 		<array>
 			<dict>
@@ -107,7 +109,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>ts-input</key>
+		<key>sha-input</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -129,7 +131,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>urldecode-input</key>
+		<key>ts-input</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -140,7 +142,7 @@
 				<string></string>
 			</dict>
 		</array>
-		<key>urlencode-input</key>
+		<key>url-input</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -179,7 +181,73 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>b64</string>
+				<string>{var:keyword_prefix}cron</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>runningsubtext</key>
+				<string>计算 cron 执行时间中...</string>
+				<key>script</key>
+				<string>python3 workflow.py cron "{query}"</string>
+				<key>subtext</key>
+				<string>支持 Linux crontab 和 Java cron，展示最近 5 次执行</string>
+				<key>title</key>
+				<string>Cron 执行时间查看</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>cron-input</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:keyword_prefix}help</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>runningsubtext</key>
+				<string>加载工具列表中...</string>
+				<key>script</key>
+				<string>python3 workflow.py catalog "{query}"</string>
+				<key>subtext</key>
+				<string>显示全部功能、prefixed keyword 和示例</string>
+				<key>title</key>
+				<string>开发工具总览</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>catalog-input</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:keyword_prefix}b64</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -187,9 +255,9 @@
 				<key>runningsubtext</key>
 				<string>处理 Base64 中...</string>
 				<key>script</key>
-				<string>python3 b64.py "{query}"</string>
+				<string>python3 workflow.py b64 "{query}"</string>
 				<key>subtext</key>
-				<string>默认编码，支持 encode / decode</string>
+				<string>默认同时显示 Base64 编码和解码结果</string>
 				<key>title</key>
 				<string>Base64 编解码</string>
 				<key>type</key>
@@ -212,7 +280,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>case</string>
+				<string>{var:keyword_prefix}case</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -220,7 +288,7 @@
 				<key>runningsubtext</key>
 				<string>转换命名风格中...</string>
 				<key>script</key>
-				<string>python3 caseconv.py "{query}"</string>
+				<string>python3 workflow.py case "{query}"</string>
 				<key>subtext</key>
 				<string>转换 snake / kebab / camel / Pascal / CONSTANT</string>
 				<key>title</key>
@@ -245,7 +313,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>html</string>
+				<string>{var:keyword_prefix}html</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -253,9 +321,9 @@
 				<key>runningsubtext</key>
 				<string>处理 HTML 实体中...</string>
 				<key>script</key>
-				<string>python3 htmlcodec.py "{query}"</string>
+				<string>python3 workflow.py html "{query}"</string>
 				<key>subtext</key>
-				<string>默认转义，支持 encode / decode</string>
+				<string>默认同时返回 HTML Encode 和 HTML Decode 结果</string>
 				<key>title</key>
 				<string>HTML 转义与反转义</string>
 				<key>type</key>
@@ -278,7 +346,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>jsonfmt</string>
+				<string>{var:keyword_prefix}json</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -286,7 +354,7 @@
 				<key>runningsubtext</key>
 				<string>格式化 JSON 中...</string>
 				<key>script</key>
-				<string>python3 jsonfmt.py "{query}"</string>
+				<string>python3 workflow.py json "{query}"</string>
 				<key>subtext</key>
 				<string>返回 pretty 和 minified 两种结果</string>
 				<key>title</key>
@@ -299,7 +367,7 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>jsonfmt-input</string>
+			<string>json-input</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -311,7 +379,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>jwt</string>
+				<string>{var:keyword_prefix}jwt</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -319,7 +387,7 @@
 				<key>runningsubtext</key>
 				<string>解析 JWT 中...</string>
 				<key>script</key>
-				<string>python3 jwt.py "{query}"</string>
+				<string>python3 workflow.py jwt "{query}"</string>
 				<key>subtext</key>
 				<string>解码 Header / Payload，不校验签名</string>
 				<key>title</key>
@@ -344,7 +412,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>pwd</string>
+				<string>{var:keyword_prefix}pwg</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -352,9 +420,9 @@
 				<key>runningsubtext</key>
 				<string>生成密码中…</string>
 				<key>script</key>
-				<string>python3 passwords.py "{query}"</string>
+				<string>python3 workflow.py pwg "{query}"</string>
 				<key>subtext</key>
-				<string>输入长度、special / nospecial、count 参数</string>
+				<string>输入长度、自定义特殊符号、count 参数</string>
 				<key>title</key>
 				<string>生成随机密码</string>
 				<key>type</key>
@@ -377,7 +445,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>md5</string>
+				<string>{var:keyword_prefix}md5</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -385,7 +453,7 @@
 				<key>runningsubtext</key>
 				<string>计算 MD5 中…</string>
 				<key>script</key>
-				<string>python3 md5.py "{query}"</string>
+				<string>python3 workflow.py md5 "{query}"</string>
 				<key>subtext</key>
 				<string>输入任意文本，返回其 MD5 值</string>
 				<key>title</key>
@@ -410,7 +478,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>sha</string>
+				<string>{var:keyword_prefix}sha</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -418,9 +486,9 @@
 				<key>runningsubtext</key>
 				<string>计算 SHA 中...</string>
 				<key>script</key>
-				<string>python3 sha.py "{query}"</string>
+				<string>python3 workflow.py sha "{query}"</string>
 				<key>subtext</key>
-				<string>默认 SHA256，支持 sha1 / sha224 / sha256 / sha384 / sha512 / all</string>
+				<string>默认展示全部结果，sha256 / sha512 排最前，支持 sha1 / sha224 / sha256 / sha384 / sha512 / all</string>
 				<key>title</key>
 				<string>SHA 哈希</string>
 				<key>type</key>
@@ -443,7 +511,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>ts</string>
+				<string>{var:keyword_prefix}ts</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -451,7 +519,7 @@
 				<key>runningsubtext</key>
 				<string>转换时间中…</string>
 				<key>script</key>
-				<string>python3 ts.py "{query}"</string>
+				<string>python3 workflow.py ts "{query}"</string>
 				<key>subtext</key>
 				<string>空参数看当前时间，输入时间戳或日期互转</string>
 				<key>title</key>
@@ -476,7 +544,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>textstat</string>
+				<string>{var:keyword_prefix}tc</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -484,7 +552,7 @@
 				<key>runningsubtext</key>
 				<string>统计文本中...</string>
 				<key>script</key>
-				<string>python3 textstat.py "{query}"</string>
+				<string>python3 workflow.py tc "{query}"</string>
 				<key>subtext</key>
 				<string>统计字符、单词、行数、字节数等</string>
 				<key>title</key>
@@ -509,19 +577,19 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>urldecode</string>
+				<string>{var:keyword_prefix}url</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>runningsubtext</key>
-				<string>解码 URL 中...</string>
+				<string>处理 URL 编码解码中...</string>
 				<key>script</key>
-				<string>python3 urldecode.py "{query}"</string>
+				<string>python3 workflow.py url "{query}"</string>
 				<key>subtext</key>
-				<string>将 URL 编码字符串还原成普通文本</string>
+				<string>默认同时返回 URL Encode 和 URL Decode 结果</string>
 				<key>title</key>
-				<string>URL Decode</string>
+				<string>URL 编码解码</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -530,7 +598,7 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>urldecode-input</string>
+			<string>url-input</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -542,40 +610,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>urlencode</string>
-				<key>queuedelaycustom</key>
-				<integer>0</integer>
-				<key>queuedelayimmediatelyinitially</key>
-				<true/>
-				<key>runningsubtext</key>
-				<string>编码 URL 中...</string>
-				<key>script</key>
-				<string>python3 urlencode.py "{query}"</string>
-				<key>subtext</key>
-				<string>将文本转换成 URL 编码结果</string>
-				<key>title</key>
-				<string>URL Encode</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>urlencode-input</string>
-			<key>version</key>
-			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>keyword</key>
-				<string>uuid</string>
+				<string>{var:keyword_prefix}uuid</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -583,9 +618,9 @@
 				<key>runningsubtext</key>
 				<string>生成 UUID 中...</string>
 				<key>script</key>
-				<string>python3 uuidgen.py "{query}"</string>
+				<string>python3 workflow.py uuid "{query}"</string>
 				<key>subtext</key>
-				<string>默认 UUID v4，支持 v1 / v4 / all / count=</string>
+				<string>默认直接返回 all，支持 v1 / v4 / all / count=</string>
 				<key>title</key>
 				<string>UUID 生成器</string>
 				<key>type</key>
@@ -606,7 +641,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>keyword</key>
-				<string>settimer</string>
+				<string>{var:keyword_prefix}timer</string>
 				<key>subtext</key>
 				<string>输入时长和提示词，例如 10、10s、1h</string>
 				<key>text</key>
@@ -629,7 +664,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>python3 start_timer.py "{query}"</string>
+				<string>python3 workflow.py timer "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -661,9 +696,114 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>Keywords: pwd, md5, sha, b64, jsonfmt, urlencode, urldecode, uuid, ts, textstat, case, html, jwt, settimer</string>
+	<string>Alfred-Dev-Tools
+
+这个 workflow 默认使用一个统一的 keyword 前缀。
+
+默认前缀:
+(空)
+
+这个前缀是可配置的，配置变量名:
+keyword_prefix
+
+默认情况下，你可以这样使用:
+
+help
+显示全部工具和每个工具的作用说明
+
+pwg
+生成随机密码
+
+md5
+计算 MD5 哈希
+
+sha
+计算 SHA 哈希。默认直接展示全部结果，且 sha256 / sha512 排最前。支持 sha1 / sha224 / sha256 / sha384 / sha512 / all
+
+b64
+Base64 编码与解码。默认同时显示编码和解码结果，如果解码失败会直接提示
+
+json
+JSON 格式化与压缩
+
+url
+URL 编码与解码。默认同时返回两种结果
+
+uuid
+生成 UUID。默认直接返回 all
+
+cron
+Cron 表达式查看。支持 Linux crontab 和 Java cron，展示从当前时间起最近 5 次执行
+
+ts
+时间戳与日期互转
+
+tc
+文本统计
+
+case
+命名风格转换
+
+html
+HTML 实体转义与反转义
+
+jwt
+JWT 解码
+
+timer
+倒计时提醒
+
+常见输入示例:
+
+pwg 10 -_+
+md5 hello world
+sha sha512 hello world
+b64 hello
+json {"a":1}
+url hello world
+uuid
+cron */15 * * * *
+cron 0 0/15 * * * ?
+ts 1710505200
+tc hello world
+case hello_world
+html &lt;div&gt;hello&lt;/div&gt;
+jwt eyJ...
+timer 10m 喝水
+
+使用提示:
+1. 输入 help 可以查看全部功能
+2. 大多数结果回车后会复制到剪贴板
+3. timer 会直接启动计时提醒，而不是复制结果
+4. 如果你把 keyword_prefix 设置为 dv，那么 keyword 会变成 dvsha、dvpwg、dvjson、dvtimer 这种形式</string>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>默认留空，表示直接使用 sha、json、timer 等 keyword。你也可以改成 dv，这样会变成 dvsha、dvjson、dvtimer。</string>
+			<key>label</key>
+			<string>Keyword prefix</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>keyword_prefix</string>
+		</dict>
+	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>v0.1.0</string>
+	<string>v0.0.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/Sajor-X/Alfred-Dev-Tools</string>
 </dict>
