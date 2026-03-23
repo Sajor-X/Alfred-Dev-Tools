@@ -549,10 +549,21 @@ Alfred-Dev-Tools/
 - `scripts/package.sh`：标准打包脚本
 - `docs/GITHUB_DESCRIPTION.md`：GitHub 发布与推广文案
 
-## 📚 额外文档
+## TODO 
 
-- GitHub 仓库描述与推广文案：
-  [docs/GITHUB_DESCRIPTION.md](docs/GITHUB_DESCRIPTION.md)
+- 快捷编辑 ~/.zshrc
+- 快捷编辑 .zshrc
+- 快捷拷贝ssh公钥
+- 快捷拷贝当前目录路径
+- 快捷打开终端在当前路径
+- Port端口占用查询 
+- 获取当前主机IP
+
+
+## ISSUE
+
+欢迎大家提需求给我
+
 
 ## 📄 License
 

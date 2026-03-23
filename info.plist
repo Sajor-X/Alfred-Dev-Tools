@@ -803,7 +803,7 @@ timer 10m 喝水
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>v0.0.4</string>
+	<string>v0.1.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/Sajor-X/Alfred-Dev-Tools</string>
 </dict>
