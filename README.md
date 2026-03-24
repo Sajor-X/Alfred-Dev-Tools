@@ -119,6 +119,8 @@ pwg 24 count=8
 pwg 32 nospecial
 ```
 
+![pwg.png](docs/pwg.png)
+
 规则说明：
 
 - 第一个参数是密码长度
@@ -147,6 +149,7 @@ md5 hello
 md5 123456
 md5 hello world
 ```
+![md5.png](docs/md5.png)
 
 返回结果：
 
@@ -183,6 +186,8 @@ sha sha512 hello
 sha all hello
 ```
 
+![sha.png](docs/sha.png)
+
 规则说明：
 
 - 不写算法时，默认直接展示全部结果
@@ -206,6 +211,8 @@ b64 <文本>
 b64 hello
 b64 aGVsbG8=
 ```
+
+![b64.png](docs/b64.png)
 
 规则说明：
 
@@ -233,6 +240,8 @@ json {"a":1,"b":2}
 json pretty {"a":1}
 json min {"a":1,"b":2}
 ```
+
+![json.png](docs/json.png)
 
 返回结果：
 
@@ -263,6 +272,8 @@ url hello%20world
 url name%3Dalfred%20tools
 ```
 
+![url.png](docs/url.png)
+
 规则说明：
 
 - 不需要区分 `urlencode` 和 `urldecode`
@@ -286,6 +297,8 @@ html <div class="box">
 html &lt;div&gt;hello&lt;/div&gt;
 ```
 
+![html.png](html.png)
+
 规则说明：
 
 - 默认同时返回 Encode 和 Decode 两种结果
@@ -304,6 +317,8 @@ uuid all
 uuid 1
 uuid 4 count=5
 ```
+
+![uuid.png](docs/uuid.png)
 
 规则说明：
 
@@ -330,6 +345,8 @@ cron */15 * * * *
 cron 0 0/15 * * * ?
 cron 0 30 9 * * MON-FRI
 ```
+
+![cron.png](docs/cron.png)
 
 规则说明：
 
@@ -374,6 +391,8 @@ ts 2026-03-22
 ts 2026-03-22 10:30:00
 ```
 
+![ts.png](docs/ts.png)
+
 规则说明：
 
 - 不带参数时，显示当前时间、当日 0 点、当前秒级时间戳、当前毫秒级时间戳
@@ -397,6 +416,8 @@ tc <文本>
 tc hello world
 tc 这是一个测试
 ```
+
+![tc.png](docs/tc.png)
 
 返回结果：
 
@@ -427,6 +448,8 @@ case helloWorld
 case HelloWorld
 ```
 
+![case.png](docs/case.png)
+
 返回结果：
 
 - `snake_case`
@@ -452,6 +475,8 @@ jwt <token>
 ```text
 jwt eyJ...
 ```
+
+![jwt.png](docs/jwt.png)
 
 规则说明：
 
