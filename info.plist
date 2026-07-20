@@ -120,6 +120,28 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>sub-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>clipboard-output</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>sum-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>clipboard-output</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>textstat-input</key>
 		<array>
 			<dict>
@@ -511,6 +533,72 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
+				<string>{var:keyword_prefix}sub</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>runningsubtext</key>
+				<string>正在替换剪贴板内容...</string>
+				<key>script</key>
+				<string>python3 workflow.py sub "{query}"</string>
+				<key>subtext</key>
+				<string>输入 /pattern/replacement/ 对剪贴板做正则替换，支持 i / m / s / x flags</string>
+				<key>title</key>
+				<string>剪贴板正则替换</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>sub-input</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:keyword_prefix}sum</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>runningsubtext</key>
+				<string>计算求和中...</string>
+				<key>script</key>
+				<string>python3 workflow.py sum "{query}"</string>
+				<key>subtext</key>
+				<string>输入数字求和，支持空格 / 逗号 / + 分隔，使用 % 进行取模</string>
+				<key>title</key>
+				<string>求和计算器</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>sum-input</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
 				<string>{var:keyword_prefix}ts</string>
 				<key>queuedelaycustom</key>
 				<integer>0</integer>
@@ -744,6 +832,12 @@ tc
 case
 命名风格转换
 
+sum
+求和计算器，支持空格 / 逗号 / + 分隔，使用 % 进行取模
+
+sub
+剪贴板正则替换，输入 /pattern/replacement/ 对剪贴板内容做替换
+
 html
 HTML 实体转义与反转义
 
@@ -767,6 +861,8 @@ cron 0 0/15 * * * ?
 ts 1710505200
 tc hello world
 case hello_world
+sum 1 2 3 % 4
+sub /hello/HI/
 html &lt;div&gt;hello&lt;/div&gt;
 jwt eyJ...
 timer 10m 喝水
@@ -803,7 +899,7 @@ timer 10m 喝水
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>v0.1.4</string>
+	<string>v0.1.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/Sajor-X/Alfred-Dev-Tools</string>
 </dict>

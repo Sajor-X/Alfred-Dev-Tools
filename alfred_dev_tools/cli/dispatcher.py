@@ -16,6 +16,8 @@ COMMAND_MODULES = {
     "pwd": "alfred_dev_tools.cli.passwords",
     "pwg": "alfred_dev_tools.cli.passwords",
     "sha": "alfred_dev_tools.cli.sha",
+    "sub": "alfred_dev_tools.cli.sub",
+    "sum": "alfred_dev_tools.cli.sum",
     "textstat": "alfred_dev_tools.cli.textstat",
     "tc": "alfred_dev_tools.cli.textstat",
     "timer": "alfred_dev_tools.cli.timer",

@@ -94,6 +94,18 @@ dvhelp
 | `tc` | 文本字数统计 | `tc hello world` |
 | `case` | 命名风格转换 | `case hello_world` |
 
+### 🧮 数字与计算
+
+| 命令 | 作用 | 示例 |
+| --- | --- | --- |
+| `sum` | 求和计算器，支持 `%` 取模 | `sum 1 2 3 % 4` |
+
+### 📋 剪贴板处理
+
+| 命令 | 作用 | 示例 |
+| --- | --- | --- |
+| `sub` | 用正则替换剪贴板内容（sed 风格） | `sub /hello/HI/` |
+
 ## 📘 命令说明
 
 下面这部分是标准用法说明。每个命令都给出“命令是什么、怎么输入、返回什么”。
@@ -459,6 +471,83 @@ case HelloWorld
 - `CONSTANT_CASE`
 - `dot.case`
 
+### `sum`
+
+作用：
+对一组数字求和，支持使用 `%` 进行取模。
+
+命令格式：
+
+```text
+sum <数字...> [% 除数]
+```
+
+使用示例：
+
+```text
+sum 1 2 3 4 5
+sum 1+2+3+4+5
+sum 1, 2, 3
+sum 15 % 4
+sum 1 2 3 4 5 % 7
+sum 1.5 2.5 3
+```
+
+返回结果：
+
+- 求和结果（回车复制）
+- 当输入包含 `%` 时，额外返回 `sum % 除数` 的取模结果
+- 平均值
+
+规则说明：
+
+- 数字之间支持空格、逗号、`+` 三种分隔方式，可以混用
+- 支持负数与小数
+- `%` 左侧是参与求和的数字列表，右侧是单个除数
+- 除数为 0 或缺失会给出错误提示，但仍会展示求和结果
+- 无法识别的 token 会被忽略，并在副标题中提示
+
+### `sub`
+
+作用：
+读取当前剪贴板内容，用正则表达式做一次替换，回车把结果写回剪贴板。
+
+命令格式：
+
+```text
+sub <分隔符><pattern><分隔符><replacement>[<分隔符>[flags]]
+sub <pattern> <replacement>
+```
+
+使用示例：
+
+```text
+sub /hello/HI/
+sub /\d+/N/
+sub /(\w+)@(\w+)/\2#\1/
+sub /HELLO/hi/i
+sub |http://|https://|
+sub #foo bar#baz#
+sub hello HI
+```
+
+返回结果：
+
+- 替换后的完整内容（回车复制）
+- 匹配次数、pattern → replacement 摘要
+- 原剪贴板内容（回车可复制原文，做二次利用）
+- 未匹配时给出提示，剪贴板保持不变
+
+规则说明：
+
+- 使用之前先把要替换的文本复制到剪贴板
+- 第一个字符若为 `/ | # ~ , @` 中任意一个，就作为分隔符
+- 分隔符不用 `/` 时，pattern / replacement 中可以自然包含 `/`，避免转义
+- 若第一个字符不是上述分隔符，则按第一个空格切成 `pattern replacement`
+- 支持标准 Python 正则语法与反向引用（`\1`、`\g<name>`）
+- 支持 flag：`i`（忽略大小写）、`m`（多行）、`s`（dotall）、`x`（verbose）、`g`（全局，默认已开启）
+- 如果 pattern 非法或替换出错，会展示错误而不改动剪贴板
+
 ### `jwt`
 
 作用：
@@ -529,6 +618,8 @@ python3 workflow.py cron "*/15 * * * *"
 python3 workflow.py ts ""
 python3 workflow.py tc "hello world"
 python3 workflow.py case "hello_world"
+python3 workflow.py sum "1 2 3 % 4"
+python3 workflow.py sub "/hello/HI/"
 python3 workflow.py html "&lt;div&gt;hello&lt;/div&gt;"
 python3 workflow.py jwt "eyJ..."
 python3 workflow.py timer --dry-run "10s 喝水"

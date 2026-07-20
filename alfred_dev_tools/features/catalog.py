@@ -16,6 +16,8 @@ TOOLS = [
     ("ts", "时间戳与日期互转", "1710505200"),
     ("tc", "文本统计", "hello world"),
     ("case", "命名风格转换", "hello_world"),
+    ("sum", "求和计算器，支持 % 取模", "1 2 3 % 4"),
+    ("sub", "剪贴板正则替换，sed 风格 /pattern/replacement/", "/hello/HI/"),
     ("html", "HTML 实体转义 / 反转义，默认同时显示两种结果", "&lt;div&gt;"),
     ("jwt", "JWT 解码", "eyJ..."),
     ("timer", "倒计时提醒", "10m 喝水"),
