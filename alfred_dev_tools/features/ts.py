@@ -4,12 +4,15 @@ import re
 from alfred_dev_tools.alfred import item, items_response
 
 _DATE_PATTERNS = [
+    "%Y-%m-%d %H:%M:%S.%f",
     "%Y-%m-%d %H:%M:%S",
     "%Y-%m-%d %H:%M",
     "%Y-%m-%d",
+    "%Y/%m/%d %H:%M:%S.%f",
     "%Y/%m/%d %H:%M:%S",
     "%Y/%m/%d %H:%M",
     "%Y/%m/%d",
+    "%Y.%m.%d %H:%M:%S.%f",
     "%Y.%m.%d %H:%M:%S",
     "%Y.%m.%d %H:%M",
     "%Y.%m.%d",
@@ -32,6 +35,10 @@ def _local_timezone():
 
 def _format_datetime(dt):
     return dt.strftime("%Y-%m-%d %H:%M:%S")
+
+
+def _format_datetime_milliseconds(dt):
+    return dt.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
 
 
 def _copy_item(title, subtitle, uid, value):
@@ -87,6 +94,12 @@ def build_now_response():
             _format_datetime(now),
         ),
         _copy_item(
+            _format_datetime_milliseconds(now),
+            "当前时间（毫秒）| 回车复制",
+            "ts-now-milliseconds",
+            _format_datetime_milliseconds(now),
+        ),
+        _copy_item(
             _format_datetime(day_start),
             "当日 0 点时间 | 回车复制",
             "ts-day-start",
@@ -121,6 +134,12 @@ def build_from_timestamp_response(raw_text):
             _format_datetime(dt),
         ),
         _copy_item(
+            _format_datetime_milliseconds(dt),
+            f"由时间戳（{unit_text}）转换得到日期时间（毫秒）| 回车复制",
+            "ts-from-timestamp-datetime-milliseconds",
+            _format_datetime_milliseconds(dt),
+        ),
+        _copy_item(
             str(normalized_seconds),
             "标准时间戳（秒）| 回车复制",
             "ts-from-timestamp-seconds",
@@ -149,6 +168,12 @@ def build_from_datetime_response(raw_text):
             "解析后的日期时间 | 回车复制",
             "ts-from-datetime-datetime",
             _format_datetime(dt),
+        ),
+        _copy_item(
+            _format_datetime_milliseconds(dt),
+            "解析后的日期时间（毫秒）| 回车复制",
+            "ts-from-datetime-datetime-milliseconds",
+            _format_datetime_milliseconds(dt),
         ),
         _copy_item(
             str(ts_seconds),
