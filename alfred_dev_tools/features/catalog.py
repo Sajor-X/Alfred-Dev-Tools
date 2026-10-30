@@ -10,6 +10,7 @@ TOOLS = [
     ("sha", "计算 SHA 哈希", "sha512 hello world"),
     ("b64", "Base64 编码 / 解码，默认同时显示两种结果", "hello"),
     ("json", "JSON 格式化 / 压缩", '{"a":1}'),
+    ("rgb", "RGB / RGBA / HEX 颜色转换，Shift 查看大色卡", "#CC73E1FF"),
     ("url", "URL 编码 / 解码，默认同时显示两种结果", "hello world"),
     ("uuid", "UUID 生成，默认直接返回 all", ""),
     ("cron", "Cron 表达式查看，支持 Linux crontab 与 Java cron", "*/15 * * * *"),

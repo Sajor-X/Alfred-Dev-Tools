@@ -1,6 +1,6 @@
 # Alfred-Dev-Tools
 
-[![Version](https://img.shields.io/badge/version-v0.1.4-111827?style=flat-square)](https://github.com/Sajor-X/Alfred-Dev-Tools)
+[![Version](https://img.shields.io/badge/version-v0.1.8-111827?style=flat-square)](https://github.com/Sajor-X/Alfred-Dev-Tools)
 [![License](https://img.shields.io/badge/license-MIT-16a34a?style=flat-square)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Alfred%20Workflow-0ea5e9?style=flat-square)](https://www.alfredapp.com/)
 [![Language](https://img.shields.io/badge/python-3.x-f59e0b?style=flat-square)](https://www.python.org/)
@@ -18,7 +18,7 @@
 ## 🚀 快速开始
 
 1. 导入打包好的 workflow：
-   `Alfred-Dev-Tools-v0.1.4.alfredworkflow`
+   `Alfred-Dev-Tools-v0.1.8.alfredworkflow`
 2. 打开 Alfred
 3. 直接输入命令，例如：
 
@@ -74,6 +74,7 @@ dvhelp
 | --- | --- | --- |
 | `b64` | Base64 编码与解码 | `b64 hello` |
 | `json` | JSON 格式化 / 压缩 | `json {"a":1}` |
+| `rgb` | RGB / RGBA / HEX 转换与大色卡 | `rgb #CC73E1FF` |
 | `url` | URL 编码 / 解码 | `url hello world` |
 | `html` | HTML 实体转义 / 反转义 | `html &lt;div&gt;hello&lt;/div&gt;` |
 | `jwt` | JWT 解码 | `jwt eyJ...` |
@@ -264,6 +265,35 @@ json min {"a":1,"b":2}
 
 - 默认优先展示格式化结果
 - 如果输入不是合法 JSON，会提示错误位置
+
+### `rgb`
+
+作用：
+识别粘贴的 RGB、RGBA 或十六进制颜色，显示颜色缩略图并生成 1200×800 大色卡。
+
+使用示例：
+
+```text
+rgb #CC73E1FF
+rgb #CC73E1
+rgb #C7E
+rgb #C7E8
+rgb rgb(204, 115, 225)
+rgb rgba(204, 115, 225, 0.5)
+rgb 204, 115, 225, 0.5
+rgb rgb(80% 45% 88% / 50%)
+```
+
+返回结果与操作：
+
+- 返回 HEX RGB、HEX RGBA、`rgb(...)` 和 `rgba(...)`，回车复制所选格式
+- 选中任意结果，按 **Shift** 或 **⌘Y** 使用 Alfred Quick Look 查看大色卡
+- 半透明颜色叠加在棋盘格背景上，副标题显示不透明度
+- 十六进制支持 3 / 4 / 6 / 8 位，可省略 `#`；8 位按 `RRGGBBAA` 解析，末尾 `FF` 为完全不透明
+- RGB 支持 0–255 数值或百分比；Alpha 支持 0–1 或百分比；越界或无效输入会提示错误
+- 非整数 RGB 分量四舍五入到 8 位整数；HEX 的 Alpha 量化到 0–255，RGBA 小数最多显示 6 位
+- 带透明度时优先返回 HEX RGBA / RGBA；RGB / HEX RGB 两项明确标记“不含透明度”
+- 使用 Python 标准库生成 PNG，缓存到 Alfred 的 workflow 缓存目录，无需安装图片处理依赖
 
 ### `url`
 
@@ -612,6 +642,7 @@ python3 workflow.py md5 "hello world"
 python3 workflow.py sha "hello"
 python3 workflow.py b64 "aGVsbG8="
 python3 workflow.py json '{"name":"dev-tools","stars":1}'
+python3 workflow.py rgb "#CC73E1FF"
 python3 workflow.py url "hello%20world"
 python3 workflow.py uuid ""
 python3 workflow.py cron "*/15 * * * *"
@@ -631,7 +662,7 @@ python3 workflow.py timer --dry-run "10s 喝水"
 
 ```bash
 ./scripts/package.sh
-./scripts/package.sh v0.1.4
+./scripts/package.sh v0.1.8
 ```
 
 脚本会自动：

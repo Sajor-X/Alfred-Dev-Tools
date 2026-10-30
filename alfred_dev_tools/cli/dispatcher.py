@@ -15,6 +15,7 @@ COMMAND_MODULES = {
     "md5": "alfred_dev_tools.cli.md5",
     "pwd": "alfred_dev_tools.cli.passwords",
     "pwg": "alfred_dev_tools.cli.passwords",
+    "rgb": "alfred_dev_tools.cli.rgb",
     "sha": "alfred_dev_tools.cli.sha",
     "sub": "alfred_dev_tools.cli.sub",
     "sum": "alfred_dev_tools.cli.sum",

@@ -186,6 +186,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>rgb-input</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>clipboard-output</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Sajor</string>
@@ -390,6 +401,39 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>json-input</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>{var:keyword_prefix}rgb</string>
+				<key>queuedelaycustom</key>
+				<integer>0</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>runningsubtext</key>
+				<string>生成色卡中...</string>
+				<key>script</key>
+				<string>python3 workflow.py rgb "{query}"</string>
+				<key>subtext</key>
+				<string>粘贴 HEX、RGB 或 RGBA，Shift / ⌘Y 查看大色卡，回车复制色值</string>
+				<key>title</key>
+				<string>RGB / RGBA 大色卡</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>rgb-input</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
@@ -814,6 +858,9 @@ Base64 编码与解码。默认同时显示编码和解码结果，如果解码�
 json
 JSON 格式化与压缩
 
+rgb
+RGB / RGBA / HEX 颜色转换，Shift / ⌘Y 查看大色卡，回车复制色值
+
 url
 URL 编码与解码。默认同时返回两种结果
 
@@ -854,6 +901,7 @@ md5 hello world
 sha sha512 hello world
 b64 hello
 json {"a":1}
+rgb #CC73E1FF
 url hello world
 uuid
 cron */15 * * * *
@@ -899,7 +947,7 @@ timer 10m 喝水
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>v0.1.7</string>
+	<string>v0.1.8</string>
 	<key>webaddress</key>
 	<string>https://github.com/Sajor-X/Alfred-Dev-Tools</string>
 </dict>
